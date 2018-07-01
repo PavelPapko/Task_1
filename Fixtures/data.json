@@ -1,0 +1,11 @@
+{
+  "tagmanagerUrl" : "https://tagmanager.google.com/#/admin/accounts/create",
+  "timeoutMessage" : "Превышено время ожидания!",
+  "nameData" : "TestName",
+  "newNameData" : "NewText",
+  "email" : "thelapstrrr@gmail.com",
+  "pass" : "diplom5kurs",
+  "containerData" : "www.test.com",
+  "containerTag" : "aria-invalid",
+  "containerAttribure" : "false"
+}
