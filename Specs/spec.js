@@ -9,51 +9,51 @@ describe('google tagmanager create tests', function () {
     });
 
     it('open page', function () {
-        browser.get(dataJSON.tagmanagerUrl);
-        browser.wait(EC.visibilityOf(googleLoginPage.emailField), 5000, dataJSON.timeoutMessage)
-            .then(() => googleLoginPage.inputEmail())
-            .then(() => googleLoginPage.clickNextBtn());
-        browser.wait(EC.visibilityOf(googleLoginPage.passField), 5000, dataJSON.timeoutMessage)
-            .then(() => googleLoginPage.inputPass())
-            .then(() => googleLoginPage.clickNextBtn1());
-        browser.wait(EC.visibilityOf(createAccPage.accountField), 10000, dataJSON.timeoutMessage)
+        browser.get(dataJSON.tagmanagerUrl)
+            .then(() => googleLoginPage.waitEmailField())
+            .then(() => googleLoginPage.inputEmail(dataJSON.email))
+            .then(() => googleLoginPage.clickNextBtn())
+            .then(() => googleLoginPage.waitPassField())
+            .then(() => googleLoginPage.inputPass(dataJSON.pass))
+            .then(() => googleLoginPage.clickNextBtn1())
+            .then(() => createAccPage.waitAccField())
             .then(() => expect(browser.getCurrentUrl()).toBe(dataJSON.tagmanagerUrl));
     });
 
     it('check and input date in field', function () {
-        expect(createAccPage.accountField.isDisplayed()).toBeTruthy()
-            .then(() => createAccPage.inputName())
-            .then(() => expect(createAccPage.accountField.getAttribute(dataJSON.containerTag)).toBe(dataJSON.containerAttribure));
+        expect(createAccPage.accFieldDisplayed()).toBeTruthy()
+            .then(() => createAccPage.inputName(dataJSON.nameData))
+            .then(() => expect(createAccPage.checkContainerFieldFilled()).toBe(dataJSON.containerAttribure));
     });
 
     it('selecting the checkbox and checking that a check is drawn', function () {
-        expect(createAccPage.checkBox.isDisplayed()).toBeTruthy()
+        expect(createAccPage.checkBoxDisplayed()).toBeTruthy()
             .then(() => createAccPage.selectCheckbox())
-            .then(() => expect(createAccPage.checkBox.isSelected()).toBe(false));
+            .then(() => expect(createAccPage.checkboxSelected()).toBe(false));
     });
 
     it('check next btn and click on next btn', function () {
-        expect(createAccPage.nextButton.isEnabled()).toBe(true)
+        expect(createAccPage.nextButtonEnabled()).toBe(true)
             .then(() => createAccPage.clickNextButtonOnPage())
-            .then(() => expect(createAccPage.containerField.isDisplayed()).toBeTruthy());
+            .then(() => expect(createAccPage.containerFieldDisplayed()).toBeTruthy());
     });
 
     it('enter text in the container field, check that the text is entered', function () {
-        expect(createAccPage.containerField.isDisplayed()).toBeTruthy()
-            .then(() => createAccPage.inputDataInContainer())
-            .then(() => expect(createAccPage.containerField.getAttribute(dataJSON.containerTag)).toBe(dataJSON.containerAttribure));
+        expect(createAccPage.containerFieldDisplayed()).toBeTruthy()
+            .then(() => createAccPage.inputDataInContainer(dataJSON.containerData))
+            .then(() => expect(createAccPage.checkContainerFieldFilled()));
     });
 
     it('check create button', function () {
-        expect(createAccPage.createButton.isEnabled()).toBe(false);
+        expect(createAccPage.createBtnEnabled()).toBe(false);
     });
 
     it('edit name field and check entered', function () {
-        expect(createAccPage.editArea.isDisplayed()).toBeTruthy()
+        expect(createAccPage.editAreaDisplayed()).toBeTruthy()
             .then(() => createAccPage.clickOnEditArea())
-            .then(() => createAccPage.accountField.clear())
-            .then(() => createAccPage.accountField.sendKeys(dataJSON.newNameData))
+            .then(() => createAccPage.accFieldClear())
+            .then(() => createAccPage.inputNewName(dataJSON.newNameData))
             .then(() => createAccPage.clickNextButtonOnPage())
-            .then(() => expect(createAccPage.nameArea.getText()).toBe(dataJSON.newNameData));
+            .then(() => expect(createAccPage.getTextFromNameArea()).toBe(dataJSON.newNameData));
     });
 });
