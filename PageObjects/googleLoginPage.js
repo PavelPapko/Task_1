@@ -5,7 +5,6 @@ var googleLoginPage = function () {
         nextbtnPass = element(by.id('passwordNext')),
         emailField = element(by.name('identifier')),
         passField = element(by.name('password'));
-    //this.params = JSON.parse(dataJSON);
 
     this.clickNextBtn = function () {
         nextbtnEmail.click();
