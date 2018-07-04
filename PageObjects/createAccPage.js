@@ -1,40 +1,36 @@
 var createAccPage = function () {
     var dataJSON = require('../Fixtures/data'),
         EC = protractor.ExpectedConditions,
-        accountField = element(by.name('form.account.data.name')),
+        accField = element(by.name('form.account.data.name')),
         checkBox = element(by.name('form.account.data.shareData')),
-        nextButton = element(by.css('[data-ng-click="stepperCtrl.nextStep()"]')),
+        nextBtn = element(by.css('[data-ng-click="stepperCtrl.nextStep()"]')),
         editArea = element(by.css('.gtm-stepper-step-complete')),
         nameArea = element(by.css('div strong')),
         containerField = element(by.name('form.container.data.name')),
-        createButton = element(by.css('[type="submit"]'));
+        createBtn = element(by.css('[type="submit"]'));
 
-    this.inputDataInContainer = function (params) {
-        containerField.sendKeys(params);
+    this.inputDataInContainer = function (data) {
+        containerField.sendKeys(data);
     };
 
-    this.inputName = function (params) {
-        accountField.sendKeys(params);
-    };
-
-    this.inputNewName = function (params) {
-        accountField.sendKeys(params);
+    this.inputName = function (name) {
+        accField.sendKeys(name);
     };
 
     this.accFieldClear = function () {
-        accountField.clear();
+        accField.clear();
     };
 
     this.waitAccField = function () {
-        browser.wait(EC.visibilityOf(accountField), 10000, dataJSON.timeoutMessage);
+        browser.wait(EC.visibilityOf(accField), 10000, dataJSON.timeoutMessage);
     };
 
     this.accFieldDisplayed = function () {
-        return accountField.isDisplayed();
+        return accField.isDisplayed();
     };
 
     this.checkContainerFieldFilled = function () {
-        return accountField.getAttribute(dataJSON.containerTag);
+        return accField.getAttribute(dataJSON.containerTag);
     };
 
     this.containerFieldDisplayed = function () {
@@ -53,16 +49,16 @@ var createAccPage = function () {
         return checkBox.isSelected();
     };
 
-    this.clickNextButtonOnPage = function () {
-        nextButton.click();
+    this.clickNextBtnOnPage = function () {
+        nextBtn.click();
     };
 
-    this.nextButtonEnabled = function () {
-        return nextButton.isEnabled();
+    this.nextBtnEnabled = function () {
+        return nextBtn.isEnabled();
     };
 
     this.createBtnEnabled = function () {
-        return createButton.isEnabled();
+        return createBtn.isEnabled();
     };
 
     this.clickOnEditArea = function () {

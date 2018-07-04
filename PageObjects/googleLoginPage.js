@@ -6,24 +6,24 @@ var googleLoginPage = function () {
         emailField = element(by.name('identifier')),
         passField = element(by.name('password'));
 
-    this.clickNextBtn = function () {
+    this.clickNextBtnEmail = function () {
         nextbtnEmail.click();
     };
 
-    this.clickNextBtn1 = function () {
+    this.clickNextBtnPass = function () {
         nextbtnPass.click();
     };
 
-    this.inputEmail = function (params) {
-        emailField.sendKeys(params);
+    this.inputEmail = function (email) {
+        emailField.sendKeys(email);
     };
 
     this.waitEmailField = function () {
         browser.wait(EC.visibilityOf(emailField), 10000, dataJSON.timeoutMessage);
     };
 
-    this.inputPass = function (params) {
-        passField.sendKeys(params);
+    this.inputPass = function (pass) {
+        passField.sendKeys(pass);
     };
 
     this.waitPassField = function () {

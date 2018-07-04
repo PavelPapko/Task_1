@@ -1,8 +1,7 @@
 describe('google tagmanager create tests', function () {
     var googleLoginPage = require('../PageObjects/googleLoginPage'),
         createAccPage = require('../PageObjects/createAccPage'),
-        dataJSON = require('../Fixtures/data'),
-        EC = protractor.ExpectedConditions;
+        dataJSON = require('../Fixtures/data');
 
     beforeAll (function () {
         browser.waitForAngularEnabled(false);
@@ -12,10 +11,10 @@ describe('google tagmanager create tests', function () {
         browser.get(dataJSON.tagmanagerUrl)
             .then(() => googleLoginPage.waitEmailField())
             .then(() => googleLoginPage.inputEmail(dataJSON.email))
-            .then(() => googleLoginPage.clickNextBtn())
+            .then(() => googleLoginPage.clickNextBtnEmail())
             .then(() => googleLoginPage.waitPassField())
             .then(() => googleLoginPage.inputPass(dataJSON.pass))
-            .then(() => googleLoginPage.clickNextBtn1())
+            .then(() => googleLoginPage.clickNextBtnPass())
             .then(() => createAccPage.waitAccField())
             .then(() => expect(browser.getCurrentUrl()).toBe(dataJSON.tagmanagerUrl));
     });
@@ -33,8 +32,8 @@ describe('google tagmanager create tests', function () {
     });
 
     it('check next btn and click on next btn', function () {
-        expect(createAccPage.nextButtonEnabled()).toBe(true)
-            .then(() => createAccPage.clickNextButtonOnPage())
+        expect(createAccPage.nextBtnEnabled()).toBe(true)
+            .then(() => createAccPage.clickNextBtnOnPage())
             .then(() => expect(createAccPage.containerFieldDisplayed()).toBeTruthy());
     });
 
@@ -52,8 +51,8 @@ describe('google tagmanager create tests', function () {
         expect(createAccPage.editAreaDisplayed()).toBeTruthy()
             .then(() => createAccPage.clickOnEditArea())
             .then(() => createAccPage.accFieldClear())
-            .then(() => createAccPage.inputNewName(dataJSON.newNameData))
-            .then(() => createAccPage.clickNextButtonOnPage())
+            .then(() => createAccPage.inputName(dataJSON.newNameData))
+            .then(() => createAccPage.clickNextBtnOnPage())
             .then(() => expect(createAccPage.getTextFromNameArea()).toBe(dataJSON.newNameData));
     });
 });
