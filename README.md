@@ -1,3 +1,4 @@
+# Google tagmanager tests
 1. Перейти на веб-страницу(https://tagmanager.google.com/#/admin/accounts/create)
 2. Проверка отображения поля Название аккаунта и его заполнение
 3. Выбор чекбокса и проверка что выставлен чек
