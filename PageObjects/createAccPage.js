@@ -76,6 +76,5 @@ var createAccPage = function () {
     this.getTextFromNameArea = function () {
         return nameArea.getText();
     };
-
 };
 module.exports = new createAccPage();

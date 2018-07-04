@@ -38,7 +38,7 @@ describe('google tagmanager create tests', function () {
             .then(() => expect(createAccPage.containerFieldDisplayed()).toBeTruthy());
     });
 
-    it('enter text in the container field, check that the text is entered', function () {
+    it('enter text in the container field, check that text is entered', function () {
         expect(createAccPage.containerFieldDisplayed()).toBeTruthy()
             .then(() => createAccPage.inputDataInContainer(dataJSON.containerData))
             .then(() => expect(createAccPage.checkContainerFieldFilled()));
