@@ -14,5 +14,12 @@ exports.config = {
 
     onPrepare : function () {
         browser.driver.manage().window().maximize();
+    },
+
+    params: {
+        login: {
+            email: 'default',
+            pass: 'default'
+        }
     }
 };

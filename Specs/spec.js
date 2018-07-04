@@ -10,10 +10,10 @@ describe('google tagmanager create tests', function () {
     it('open page', function () {
         browser.get(dataJSON.tagmanagerUrl)
             .then(() => googleLoginPage.waitEmailField())
-            .then(() => googleLoginPage.inputEmail(dataJSON.email))
+            .then(() => googleLoginPage.inputEmail(browser.params.login.email))
             .then(() => googleLoginPage.clickNextBtnEmail())
             .then(() => googleLoginPage.waitPassField())
-            .then(() => googleLoginPage.inputPass(dataJSON.pass))
+            .then(() => googleLoginPage.inputPass(browser.params.login.pass))
             .then(() => googleLoginPage.clickNextBtnPass())
             .then(() => createAccPage.waitAccField())
             .then(() => expect(browser.getCurrentUrl()).toBe(dataJSON.tagmanagerUrl));
