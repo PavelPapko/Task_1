@@ -1,0 +1,7 @@
+[0706/130327.994:ERROR:process_info.cc(359)] UncheckedAllocate
+[0706/130535.246:ERROR:process_info.cc(359)] UncheckedAllocate
+[0706/130535.247:ERROR:process_info.cc(359)] UncheckedAllocate
+[0706/131028.199:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Попытка доступа к процессу, выполняющему процедуру завершения. (0xc000010a)
+[0706/131028.199:ERROR:file_io_win.cc(161)] CreateFile C:\Users\7636~1\AppData\Local\Temp\scoped_dir5220_4005\Crashpad\settings.dat: Не удается найти указанный файл. (0x2)
+[0712/155707.294:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0712/155806.798:ERROR:crash_report_database_win.cc(428)] unexpected header

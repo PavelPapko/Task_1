@@ -12,14 +12,15 @@ exports.config = {
         defaultTimeoutInterval: 30000
     },
 
-    onPrepare : function () {
+    onPrepare: function () {
         browser.driver.manage().window().maximize();
+        global.emailG = '--params.login.email=vitstream1991@gmail.com';
     },
 
     params: {
         login: {
-            email: 'default',
-            pass: 'default'
+            email: 'thelapstrrr@gmail.com',
+            pass: 'diplom5kurs'
         }
     }
 };

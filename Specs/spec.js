@@ -1,21 +1,23 @@
 describe('google tagmanager create tests', function () {
-    var googleLoginPage = require('../PageObjects/googleLoginPage'),
+    let googleLoginPage = require('../PageObjects/googleLoginPage'),
         createAccPage = require('../PageObjects/createAccPage'),
-        dataJSON = require('../Fixtures/data');
+        dataJSON = require('../Fixtures/data'),
+        waiter = require('../Helpers/waiter'),
+        consoleParams = require('../Helpers/consoleParams');
 
-    beforeAll (function () {
+    beforeAll(function () {
         browser.waitForAngularEnabled(false);
     });
 
     it('open page', function () {
         browser.get(dataJSON.tagmanagerUrl)
-            .then(() => googleLoginPage.waitEmailField())
-            .then(() => googleLoginPage.inputEmail(browser.params.login.email))
+            .then(() => waiter.waitLocator(googleLoginPage.emailField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
+            .then(() => googleLoginPage.inputEmail(consoleParams.checkConsoleParams(dataJSON.emailConsole)))
             .then(() => googleLoginPage.clickNextBtnEmail())
-            .then(() => googleLoginPage.waitPassField())
-            .then(() => googleLoginPage.inputPass(browser.params.login.pass))
+            .then(() => waiter.waitLocator(googleLoginPage.passField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
+            .then(() => googleLoginPage.inputPass(consoleParams.checkConsoleParams(dataJSON.passConsole)))
             .then(() => googleLoginPage.clickNextBtnPass())
-            .then(() => createAccPage.waitAccField())
+            .then(() => waiter.waitLocator(createAccPage.accField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
             .then(() => expect(browser.getCurrentUrl()).toBe(dataJSON.tagmanagerUrl));
     });
 

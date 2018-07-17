@@ -1,6 +1,8 @@
-var createAccPage = function () {
-    var dataJSON = require('../Fixtures/data'),
-        EC = protractor.ExpectedConditions,
+/**
+ * Page object страницы google tagmanager.
+ */
+let createAccPage = function () {
+    let dataJSON = require('../Fixtures/data'),
         accField = element(by.name('form.account.data.name')),
         checkBox = element(by.name('form.account.data.shareData')),
         nextBtn = element(by.css('[data-ng-click="stepperCtrl.nextStep()"]')),
@@ -9,66 +11,126 @@ var createAccPage = function () {
         containerField = element(by.name('form.container.data.name')),
         createBtn = element(by.css('[type="submit"]'));
 
+    /**
+     * Ввод данных в поле "Название контейнера"
+     * @param {string} data - Данные
+     */
     this.inputDataInContainer = function (data) {
         containerField.sendKeys(data);
     };
 
+    /**
+     * Ввод названия аккаунта
+     * @param {string} name - Имя
+     */
     this.inputName = function (name) {
         accField.sendKeys(name);
     };
 
+    /**
+     * Отчистка поля "Названия аккаунта"
+     */
     this.accFieldClear = function () {
         accField.clear();
     };
 
-    this.waitAccField = function () {
-        browser.wait(EC.visibilityOf(accField), 10000, dataJSON.timeoutMessage);
+    /**
+     * Метод возвращающий локатор поля "Названия аккаунта"
+     * @returns {*} Локатор поля "Названия аккаунта"
+     */
+    this.accField = function () {
+        return accField;
     };
 
+    /**
+     * Проверка отображения поля "Названия аккаунта"
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.accFieldDisplayed = function () {
         return accField.isDisplayed();
     };
 
+    /**
+     * Проверка что поле "Название контейнера" заполен
+     * @returns {string|promise.Promise<string>|webdriver.promise.Promise.<string>} Возвращает результат выполнения промиса
+     */
     this.checkContainerFieldFilled = function () {
         return accField.getAttribute(dataJSON.containerTag);
     };
 
+    /**
+     * Проверка отображения поля "Название контейнера"
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.containerFieldDisplayed = function () {
         return containerField.isDisplayed();
     };
 
+    /**
+     * Проверка отображения чекбокса
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.checkBoxDisplayed = function () {
         return checkBox.isDisplayed();
     };
 
+    /**
+     * Клик чекбокса
+     */
     this.selectCheckbox = function () {
         checkBox.click();
     };
 
+    /**
+     * Проверка что чекбокс нажат
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.checkboxSelected = function () {
         return checkBox.isSelected();
     };
 
+    /**
+     * Нажатие на кнопку "Далее"
+     */
     this.clickNextBtnOnPage = function () {
         nextBtn.click();
     };
 
+    /**
+     * Проверка что кнопка "Далее" активна
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.nextBtnEnabled = function () {
         return nextBtn.isEnabled();
     };
 
+    /**
+     * Проверка что кнопка "Создать" активна
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.createBtnEnabled = function () {
         return createBtn.isEnabled();
     };
 
+    /**
+     * Нажатие на область "Настройка аккаунта"
+     */
     this.clickOnEditArea = function () {
         editArea.click();
     };
 
+    /**
+     * Проверка что область "Настройка аккаунта" отображается
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     */
     this.editAreaDisplayed = function () {
         return editArea.isDisplayed();
     };
 
+    /**
+     * Проверка введённого теста в поле "Название аккаунта"
+     * @returns {webdriver.promise.Promise.<string>|promise.Promise<string>} Возвращает результат выполнения промиса
+     */
     this.getTextFromNameArea = function () {
         return nameArea.getText();
     };

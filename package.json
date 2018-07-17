@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "protractor protractor.conf.js"
+    "start": "babel-node index.js",
+    "test": "node_modules/protractor/bin/protractor task_1/protractor.conf.js"
   },
   "dependencies": {
     "protractor": "^5.3.2"
