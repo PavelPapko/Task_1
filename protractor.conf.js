@@ -14,7 +14,6 @@ exports.config = {
 
     onPrepare: function () {
         browser.driver.manage().window().maximize();
-        global.emailG = '--params.login.email=vitstream1991@gmail.com';
     },
 
     params: {

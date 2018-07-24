@@ -1,55 +1,58 @@
-describe('google tagmanager create tests', function () {
+describe('Google tagmanager create tests', function () {
     let googleLoginPage = require('../PageObjects/googleLoginPage'),
         createAccPage = require('../PageObjects/createAccPage'),
         dataJSON = require('../Fixtures/data'),
-        waiter = require('../Helpers/waiter'),
-        consoleParams = require('../Helpers/consoleParams');
+        utilsJS = require('../Helpers/utilsJS'),
+        emailBrowserParam = browser.params.login.email,
+        passBrowserParam = browser.params.login.pass;
 
     beforeAll(function () {
         browser.waitForAngularEnabled(false);
     });
 
-    it('open page', function () {
+    it('Open page', function () {
+        let emailParam = utilsJS.isExistsParam(emailBrowserParam) ? utilsJS.getConsoleParam(emailBrowserParam) : emailBrowserParam;
+        let passParam = utilsJS.isExistsParam(passBrowserParam) ? utilsJS.getConsoleParam(passBrowserParam) : passBrowserParam;
         browser.get(dataJSON.tagmanagerUrl)
-            .then(() => waiter.waitLocator(googleLoginPage.emailField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
-            .then(() => googleLoginPage.inputEmail(consoleParams.checkConsoleParams(dataJSON.emailConsole)))
+            .then(() => utilsJS.waitLocator(googleLoginPage.getEmailField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
+            .then(() => googleLoginPage.inputEmail(emailParam))
             .then(() => googleLoginPage.clickNextBtnEmail())
-            .then(() => waiter.waitLocator(googleLoginPage.passField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
-            .then(() => googleLoginPage.inputPass(consoleParams.checkConsoleParams(dataJSON.passConsole)))
+            .then(() => utilsJS.waitLocator(googleLoginPage.getPassField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
+            .then(() => googleLoginPage.inputPass(passParam))
             .then(() => googleLoginPage.clickNextBtnPass())
-            .then(() => waiter.waitLocator(createAccPage.accField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
+            .then(() => utilsJS.waitLocator(createAccPage.getAccField(), dataJSON.timeoutTime, dataJSON.timeoutMessage))
             .then(() => expect(browser.getCurrentUrl()).toBe(dataJSON.tagmanagerUrl));
     });
 
-    it('check and input date in field', function () {
+    it('Check and input date in field', function () {
         expect(createAccPage.accFieldDisplayed()).toBeTruthy()
             .then(() => createAccPage.inputName(dataJSON.nameData))
-            .then(() => expect(createAccPage.checkContainerFieldFilled()).toBe(dataJSON.containerAttribure));
+            .then(() => expect(createAccPage.checkContainerFieldFilled()).toBe('false'));
     });
 
-    it('selecting the checkbox and checking that a check is drawn', function () {
+    it('Selecting the checkbox and checking that a check is drawn', function () {
         expect(createAccPage.checkBoxDisplayed()).toBeTruthy()
             .then(() => createAccPage.selectCheckbox())
             .then(() => expect(createAccPage.checkboxSelected()).toBe(false));
     });
 
-    it('check next btn and click on next btn', function () {
+    it('Check next btn and click on next btn', function () {
         expect(createAccPage.nextBtnEnabled()).toBe(true)
             .then(() => createAccPage.clickNextBtnOnPage())
             .then(() => expect(createAccPage.containerFieldDisplayed()).toBeTruthy());
     });
 
-    it('enter text in the container field, check that text is entered', function () {
+    it('Enter text in the container field, check that text is entered', function () {
         expect(createAccPage.containerFieldDisplayed()).toBeTruthy()
             .then(() => createAccPage.inputDataInContainer(dataJSON.containerData))
             .then(() => expect(createAccPage.checkContainerFieldFilled()));
     });
 
-    it('check create button', function () {
+    it('Check create button', function () {
         expect(createAccPage.createBtnEnabled()).toBe(false);
     });
 
-    it('edit name field and check entered', function () {
+    it('Edit name field and check entered', function () {
         expect(createAccPage.editAreaDisplayed()).toBeTruthy()
             .then(() => createAccPage.clickOnEditArea())
             .then(() => createAccPage.accFieldClear())

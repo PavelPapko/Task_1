@@ -1,13 +1,8 @@
 {
   "tagmanagerUrl": "https://tagmanager.google.com/#/admin/accounts/create",
   "timeoutMessage": "Превышено время ожидания!",
-  "timeoutTime": 10000,
+  "timeoutTime": 30000,
   "nameData": "TestName",
   "newNameData": "NewText",
-  "containerData": "www.test.com",
-  "containerTag": "aria-invalid",
-  "containerAttribure": "false",
-  "emailConsole": "--params.login.email=vitstream1991@gmail.com",
-  "passConsole": "--params.login.pass=0729395aA"
-
+  "containerData": "www.test.com"
 }

@@ -2,14 +2,14 @@
  * Page object страницы google tagmanager.
  */
 let createAccPage = function () {
-    let dataJSON = require('../Fixtures/data'),
-        accField = element(by.name('form.account.data.name')),
+    let accField = element(by.name('form.account.data.name')),
         checkBox = element(by.name('form.account.data.shareData')),
         nextBtn = element(by.css('[data-ng-click="stepperCtrl.nextStep()"]')),
         editArea = element(by.css('.gtm-stepper-step-complete')),
         nameArea = element(by.css('div strong')),
         containerField = element(by.name('form.container.data.name')),
-        createBtn = element(by.css('[type="submit"]'));
+        createBtn = element(by.css('[type="submit"]')),
+        containerTag = "aria-invalid";
 
     /**
      * Ввод данных в поле "Название контейнера"
@@ -38,13 +38,13 @@ let createAccPage = function () {
      * Метод возвращающий локатор поля "Названия аккаунта"
      * @returns {*} Локатор поля "Названия аккаунта"
      */
-    this.accField = function () {
+    this.getAccField = function () {
         return accField;
     };
 
     /**
      * Проверка отображения поля "Названия аккаунта"
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.accFieldDisplayed = function () {
         return accField.isDisplayed();
@@ -52,15 +52,15 @@ let createAccPage = function () {
 
     /**
      * Проверка что поле "Название контейнера" заполен
-     * @returns {string|promise.Promise<string>|webdriver.promise.Promise.<string>} Возвращает результат выполнения промиса
+     * @returns {string|promise.Promise<string>|webdriver.promise.Promise.<string>} Результат выполнения промиса
      */
     this.checkContainerFieldFilled = function () {
-        return accField.getAttribute(dataJSON.containerTag);
+        return accField.getAttribute(containerTag);
     };
 
     /**
      * Проверка отображения поля "Название контейнера"
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.containerFieldDisplayed = function () {
         return containerField.isDisplayed();
@@ -68,7 +68,7 @@ let createAccPage = function () {
 
     /**
      * Проверка отображения чекбокса
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.checkBoxDisplayed = function () {
         return checkBox.isDisplayed();
@@ -82,7 +82,7 @@ let createAccPage = function () {
     };
 
     /**
-     * Проверка что чекбокс нажат
+     * Проверка, что чекбокс нажат
      * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
      */
     this.checkboxSelected = function () {
@@ -97,8 +97,8 @@ let createAccPage = function () {
     };
 
     /**
-     * Проверка что кнопка "Далее" активна
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * Проверка, что кнопка "Далее" активна
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.nextBtnEnabled = function () {
         return nextBtn.isEnabled();
@@ -106,7 +106,7 @@ let createAccPage = function () {
 
     /**
      * Проверка что кнопка "Создать" активна
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.createBtnEnabled = function () {
         return createBtn.isEnabled();
@@ -120,8 +120,8 @@ let createAccPage = function () {
     };
 
     /**
-     * Проверка что область "Настройка аккаунта" отображается
-     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Возвращает результат выполнения промиса
+     * Проверка, что область "Настройка аккаунта" отображается
+     * @returns {webdriver.promise.Promise.<boolean>|promise.Promise<boolean>} Результат выполнения промиса
      */
     this.editAreaDisplayed = function () {
         return editArea.isDisplayed();
@@ -129,7 +129,7 @@ let createAccPage = function () {
 
     /**
      * Проверка введённого теста в поле "Название аккаунта"
-     * @returns {webdriver.promise.Promise.<string>|promise.Promise<string>} Возвращает результат выполнения промиса
+     * @returns {webdriver.promise.Promise.<string>|promise.Promise<string>} Результат выполнения промиса
      */
     this.getTextFromNameArea = function () {
         return nameArea.getText();

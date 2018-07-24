@@ -3,7 +3,7 @@
  */
 let googleLoginPage = function () {
     let nextbtnEmail = element(by.id('identifierNext')),
-        nextbtnPass = element(by.id('passwordNext')),
+        nextBtnPass = element(by.id('passwordNext')),
         emailField = element(by.name('identifier')),
         passField = element(by.name('password'));
 
@@ -18,23 +18,23 @@ let googleLoginPage = function () {
      * Нажатие кнопки "Далее" на странице ввода пароля
      */
     this.clickNextBtnPass = function () {
-        nextbtnPass.click();
+        nextBtnPass.click();
     };
 
     /**
      * Ввод емейла
      * @param {boolean} email - Значение по которому выбирается логин (default / custom)
-     * @returns {ActionSequence | promise.Promise<void> | webdriver.promise.Promise.<void>}
+     * @returns {ActionSequence | promise.Promise<void> | webdriver.promise.Promise.<void>} Результат выполнения промиса
      */
     this.inputEmail = function (email) {
-        return (email == false) ? emailField.sendKeys(browser.params.login.email): emailField.sendKeys(browser.params.login.email);
+        emailField.sendKeys(email);
     };
 
     /**
      * Метод возвращающий локатор поля "Телефон или адрес эл. почты"
      * @returns {*} Локатор поля емейла
      */
-    this.emailField = function () {
+    this.getEmailField = function () {
         return emailField;
     };
 
@@ -42,17 +42,17 @@ let googleLoginPage = function () {
      * Метод возвращающий локатор поля пароля
      * @returns {*} Локатор поля пароля
      */
-    this.passField = function () {
+    this.getPassField = function () {
         return passField;
     };
 
     /**
      * Ввод пароля
      * @param {boolean} pass - Значение по которому выбирается пароль (default / custom)
-     * @returns {ActionSequence | promise.Promise<void> | webdriver.promise.Promise.<void>} Возвращает результат выполнения промиса
+     * @returns {ActionSequence | promise.Promise<void> | webdriver.promise.Promise.<void>} Результат выполнения промиса
      */
     this.inputPass = function (pass) {
-        return (pass == false) ? passField.sendKeys(browser.params.login.pass): passField.sendKeys(browser.params.login.pass);
+        passField.sendKeys(pass)
     };
 };
 module.exports = new googleLoginPage();
